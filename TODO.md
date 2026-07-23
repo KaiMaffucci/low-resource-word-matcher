@@ -12,11 +12,12 @@ Explore:
  - Accounting for large datasets, big enough where each dataset cannot fit into standard RAM sizes.
  - Parallel processing for word-matching
  - Comparing transcriptions from TTS applications to written words
+ - Taking tone+pitch into account (especially for Cherokee)
 
 # Generalized Version
 
 1. **Load data**. Load data from storage into memory in a structured format, such as lists or dictionaries. Ensure text strings are loaded as Unicode, especially when that may be imperative.
-2. **Normalize**. Strip characters of unnecessary elements, such as capitalization, accents, and punctuation. There will be a default normalizer function, but you may specify your own.
+2. **Normalize**. Strip characters of unnecessary elements, such as capitalization, accents, and punctuation. There will be a default normalizer function, but you may specify your own, especially since accents may matter in certain languages.
 3. **Parse**. At this point, we will have text strings each corresponding to one word. The goal here will be to parse each word into morphemes. The default parser will parse each character as a morpheme, but one may pass their own parser. This is important for most languages, as even the presence of a single diphthong could throw the program off.
 4. **n-gram tokenization + vectorization**. Builds n-gram tokens for each word out of morphemes. Default n=2.
 5. **Cosine similarity**. Performs cosine similarity on the tokenized version of each word in set A against each word in set B in a bipartite manner. 
@@ -25,6 +26,8 @@ Explore:
 # Cherokee (Tsalagi) Specifications
 
 **DISCLAIMER**: I am not Indigenous, let alone enrolled in a Cherokee nation. While I am taking courses with the Cherokee Nation of OK, take **everything** I say about the Cherokee language with a *huge* grain of salt. If you have questions about the language, it is best to ask a native speaker, or at least a second-language learner enrolled in one of the three federally recognized Cherokee nations (Cherokee Nation OK, United Keetowah Band OK, Eastern Band NC).
+
+Another note: Cherokee is a tonal, pitched, complex spoken language. Sound matters, but this is a text NLP program. It may fail to notice certain differences between words.
 
 1. **Loader.** I will likely start by comparing words from my Cherokee Anki deck as I progress through the Cherokee Nation of Oklahoma's online language courses (1-4). This dataset interests me because I can take the versions of the words written in syllabics, transliterate the syllabics to phonetics, then compare those versions of each word against the phonetics in my original notes. I will explain either here or in the loader file how I will do this, but these details are not as important to the NLP process for now. There is one important note, though: we will want to save the phonetic transliteration that came from what syllabary word originally so that we may compare accuracy. This will add another layer of complexity that I will tackle as I go along.
 2. **Normalizer.** Frankly, there's not much to be done here for Cherokee, so I'll probably end up using my default normalizer.
