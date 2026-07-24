@@ -19,7 +19,7 @@ Explore:
 1. **Load data**. Load data from storage into memory in a structured format, such as lists or dictionaries. Ensure text strings are loaded as Unicode, especially when that may be imperative.
 2. **Normalize**. Strip characters of unnecessary elements, such as capitalization, accents, and punctuation. There will be a default normalizer function, but you may specify your own, especially since accents may matter in certain languages.
 3. **Parse**. At this point, we will have text strings each corresponding to one word. The goal here will be to parse each word into morphemes. The default parser will parse each character as a morpheme, but one may pass their own parser. This is important for most languages, as even the presence of a single diphthong could throw the program off.
-4. **n-gram tokenization + vectorization**. Builds n-gram tokens for each word out of morphemes. Default n=2.
+4. **n-gram tokenization + vectorization**. Builds n-gram tokens and vectors for each word out of morphemes. Default n=2.
 5. **Cosine similarity**. Performs cosine similarity on the tokenized version of each word in set A against each word in set B in a bipartite manner. 
 6. **Output scores**. Outputs the similarity of each word in set A to set B. One parameter will determine at what similarity one chooses to keep or discard a match. For example, a word-to-word similarity of only 20% indicates the words are probably not related. I will have to determine what a logical default percentage will be.
 
