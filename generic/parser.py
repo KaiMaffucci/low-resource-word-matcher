@@ -9,11 +9,4 @@ def parse(A_words, B_words):
     for i in range(len(B_words)):
         B_words[i].morphemes = list(B_words[i].raw)
 
-    # test code
-    for word in A_words:
-        print(word.morphemes)
-
-    for word in B_words:
-        print(word.morphemes)
-
     return A_words, B_words
