@@ -12,7 +12,7 @@ d: data delimiter/seperator (tab, comma, etc)
 def load(A=input("File with set A words: "), B = input("File with set B words: ")):
 
     from shared.wordobj import WordObj
-
+    
     A_words = []
     with open(A, "r") as A_file:
         for line in A_file:

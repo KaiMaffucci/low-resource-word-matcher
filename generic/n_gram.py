@@ -48,6 +48,7 @@ def vectorize(words, vocab):
 
     # vectorizes individual word
     from collections import Counter
+    import numpy as np
 
     def vectorize_word(ngrams):
 
@@ -55,7 +56,8 @@ def vectorize(words, vocab):
         counts = Counter(ngrams)
 
         # empty vector size of vocab
-        new_vec = [0] * len(vocab)
+        #new_vec = [0] * len(vocab)
+        new_vec = np.zeros(len(vocab), dtype=int)
 
         # set each index of vector to count of corresponding ngram
         for ngram, count in counts.items():
