@@ -17,9 +17,10 @@ def run(load,
         output):
 
     # run all central functions
-    load()
-    parse()
-    normalize()
+    #from shared.wordobj import WordObj
+    A_words, B_words = load()
+    A_words, B_words = parse(A_words, B_words)
+    A_words, B_words = normalize(A_words, B_words)
     n_gram()
     cosine_similarity()
     output()
