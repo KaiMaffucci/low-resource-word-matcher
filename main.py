@@ -17,12 +17,12 @@ def run(load,
         output):
 
     # run all central functions
-    load()
-    parse()
-    normalize()
-    n_gram()
-    cosine_similarity()
-    output()
+    A_words, B_words = load()
+    A_words, B_words = parse(A_words, B_words)
+    A_words, B_words = normalize(A_words, B_words)
+    A_words, B_words = n_gram(A_words, B_words)
+    G = cosine_similarity(A_words, B_words)
+    output(G, 0.0)
     return
 
 
