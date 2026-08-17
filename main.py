@@ -1,25 +1,21 @@
 # here is where external library imports will go
 import sys
 from pathlib import Path
-# TODO: I will have to determine what NLP library is best here
-
-# here is where additional local imports may go
-
 
 # a higher-order function which takes all the other functions as arguments
 # this will look different as I develop
 # note: will probably need some kind of word object
 def run(load,
-        parse,
         normalize,
+        parse,
         n_gram,
         cosine_similarity,
         output):
 
     # run all central functions
     A_words, B_words = load()
-    A_words, B_words = parse(A_words, B_words)
     A_words, B_words = normalize(A_words, B_words)
+    A_words, B_words = parse(A_words, B_words)
     A_words, B_words = n_gram(A_words, B_words)
     G = cosine_similarity(A_words, B_words)
     output(G, 0.0)
@@ -45,8 +41,8 @@ def main():
     # if it fails, throw error with message
     try:
         from loader import load # type: ignore
-        from parser import parse # type: ignore
         from normalizer import normalize # type: ignore
+        from parser import parse # type: ignore
         from n_gram import n_gram # type: ignore
         from cosine import cosine_similarity # type: ignore
         from output import output # type: ignore
@@ -57,7 +53,7 @@ def main():
             pass
         raise BadImportError(f"Bad custom imports from {target}. Do you have all the right script and file names?")
     
-    run(load, parse, normalize, n_gram, cosine_similarity, output)
+    run(load, normalize, parse, n_gram, cosine_similarity, output)
 
     return 0 # placeholder
     
