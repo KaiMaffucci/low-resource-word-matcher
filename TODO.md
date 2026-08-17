@@ -42,7 +42,7 @@ WORD: SYLLABLE+
 SYLLABLE: h consonant vowel |\
 &emsp;&emsp;consonant vowel |\
 &emsp;&emsp;vowel |\
-&emsp;&emsp;standalone_consonant |\
+&emsp;&emsp;consonant |\
 &emsp;&emsp;'
 
 4. **n-gram tokenization and vectorization**. Building the n-gram tokens will likely use the default tokenizer, as all we need to do is glue morphemes together according to n. Vectorization will need to take into account certain norms about written Cherokee, listed below. ☐
