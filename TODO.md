@@ -42,11 +42,12 @@ WORD: SYLLABLE+
 SYLLABLE: h consonant vowel |\
 &emsp;&emsp;consonant vowel |\
 &emsp;&emsp;vowel |\
+&emsp;&emsp;standalone_consonant |\
 &emsp;&emsp;'
 
 4. **n-gram tokenization and vectorization**. Building the n-gram tokens will likely use the default tokenizer, as all we need to do is glue morphemes together according to n. Vectorization will need to take into account certain norms about written Cherokee, listed below. ☐
  - If two morphemes start with the same consonant sound, they are 50% similar. Same with ending with vowels.
- - Consonant + vowel morphemes will count as 50% similar to standalone vowels if the vowels match.
+ - Consonant + vowel morphemes will count as 50% similar to standalone vowels if the vowels match; same logic for standalone consonants.
  - Consonant sounds *ts* = *ch* = *j* (distance between these is 0)
  - *dl* + vowel and *tl* + vowel should have a 25% difference for matching vowels, and 75% difference for nonmatching vowels, except for *dla* and *tla*, which should be 50% similar. Only the Ꮬ and Ꮭ syllables differentiate between *dla* and *tla*: all other *tl* syllables could also be *dl*.
  - Aspirated consonants + vowel (eg. *hw* + vowel), potentially barring *hl* + vowel (due to similarity with *tl* + vowel), will be considered 75% similar, or aspiration will be on a different axis entirely. *h* + consonant indicates aspiration, but is left out of syllabary and often left out of phonetics.
