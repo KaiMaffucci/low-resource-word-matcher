@@ -83,18 +83,43 @@ def n_gram(A_words, B_words, n=2):
     """
 
     # this function returns a dictionary to update the main big dictionary with
+    # this is for generic similar sounds, such as syllables with matching consonants or vowels
     def add_dists(sounds1, sounds2=[], dist=0.5):
-        to_add = {}
+        new_dists = {}
         if sounds2 == []:
             sounds2 = sounds1
-        for m1 in sounds1:
-            for m2 in sounds2:
-                if m1 != m2:
-                    to_add[frozenset(m1, m2)] = dist
-        return to_add
+        for s1 in sounds1:
+            for s2 in sounds2:
+                if s1 != s2:
+                    new_dists[frozenset(s1, s2)] = dist
+        return new_dists
 
-    # NOTE: PROBLEM: need to account for situations like ge and ke that have both a matching vowel and semi-matching consonant, etc
-    # def add_edge_cases()
+    # for situations where matching consonant sounds are considered EQUAL, like ts and j
+    # sounds1 and sounds2 are expected to be DIFFERENT LISTS
+    def add_equ_dists(sounds1, sounds2):
+        new_dists = {}
+        for s1 in sounds1:
+            for s2 in sounds2:
+                if s1[-1] == s2[-1]: 
+                    new_dist = 0
+                else:
+                    new_dist = 0.5
+                new_dists[frozenset(s1, s2)] = new_dist
+        return new_dists
+    
+    # for situations like tl- and dl- or g- and k- (barring ga/ka)
+    # sounds1 and sounds2 are expected to be DIFFERENT LISTS
+    def add_semi_dists(sounds1, sounds2):
+        new_dists = {}
+        for s1 in sounds1:
+            for s2 in sounds2:
+                # consonants considered automatically half-similar
+                if s1[-1] == s2[-1]: 
+                    new_dist = 0.25
+                else:
+                    new_dist = 0.75
+                new_dists[frozenset(s1, s2)] = new_dist
+        return new_dists
 
     dist_dict = {}
 
@@ -125,20 +150,20 @@ def n_gram(A_words, B_words, n=2):
     dist_dict.update(add_dists(u_sounds))
     dist_dict.update(add_dists(v_sounds))
 
-    # ts = j => 0 distance (may need to add ch later)
-    
+    # ts = j implies 0 distance (may need to add ch later)
+    dist_dict.update(add_equ_dists(ts_sounds, j_sounds))
 
     # dl + tl (except dla and tla) have 0.25 distance for matching vowel morphemes, nonmatching vowels have 0.75 distance
-    dist_dict.update(add_dists(tl_sounds, dl_sounds, 0.75))
-
+    dist_dict.update(add_semi_dists(dl_sounds, tl_sounds))
     dist_dict[frozenset("dla", "tla")] = 0.5
 
     # (h consonant [vowel]) have distance of 0.25 from original matching (consonant vowel)
-
+    # TODO
 
     # g and k syllables (except in "ka" and "ga" because they have different characters)
     # have 0.25 distance, like dl- and tl-
-
+    dist_dict.update(add_semi_dists(g_sounds, k_sounds))
+    dist_dict[frozenset("ga", "ka")] = 0.5
 
     # test code: print dictionary
 
