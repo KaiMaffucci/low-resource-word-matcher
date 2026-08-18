@@ -3,14 +3,14 @@ def parse(A_words, B_words):
 
     import re
 
-    consonants = r"(?:ts|qu|tl|[jgkhlmnstwyd])" # may need to add 'ch'? (=ts=j)
+    consonants = r"(?:ts|qu|tl|dl|[jgkhlmnstwyd])" # may need to add 'ch'? (=ts=j)
     vowels = r"[aeiouv]"
 
     # based off my defined grammar (originally in TODO.md)
     grammar_list = [
         r"nah",
         r"hna",
-        r"dla",
+        r"dl" + vowels, # need to put this manually so we don't parse things as ['d', 'le'] for example
         r"h" + consonants + vowels,
         consonants + vowels,
         r"'" + vowels,
