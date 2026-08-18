@@ -43,6 +43,7 @@ SYLLABLE: nah | hna |\
 &emsp;&emsp;h consonant vowel |\
 &emsp;&emsp;consonant vowel |\
 &emsp;&emsp;vowel |\
+&emsp;&emsp;h consonant |\
 &emsp;&emsp;consonant |\
 &emsp;&emsp;'
 
