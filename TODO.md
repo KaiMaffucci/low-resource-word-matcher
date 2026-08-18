@@ -40,6 +40,7 @@ Syntax tree:
 WORD: SYLLABLE+
 
 SYLLABLE: nah | hna |\
+&emsp;&emsp;dl vowel |\
 &emsp;&emsp;h consonant vowel |\
 &emsp;&emsp;consonant vowel |\
 &emsp;&emsp;' vowel\
