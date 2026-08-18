@@ -46,7 +46,7 @@ SYLLABLE: nah | hna |\
 &emsp;&emsp;vowel |\
 &emsp;&emsp;h consonant |\
 &emsp;&emsp;consonant |\
-&emsp;&emsp;s\
+&emsp;&emsp;s
 
 4. **n-gram tokenization and vectorization**. Building the n-gram tokens will likely use the default tokenizer, as all we need to do is glue morphemes together according to n. Vectorization will need to take into account certain norms about written Cherokee, listed below. ☐
  - If two morphemes start with the same consonant sound, they are 50% similar. Same with ending with vowels.
