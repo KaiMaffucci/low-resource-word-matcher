@@ -39,7 +39,7 @@ Syntax tree:
 
 WORD: SYLLABLE+
 
-SYLLABLE: nah | hna |
+SYLLABLE: nah | hna |\
 &emsp;&emsp;h consonant vowel |\
 &emsp;&emsp;consonant vowel |\
 &emsp;&emsp;vowel |\
