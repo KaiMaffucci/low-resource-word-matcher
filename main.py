@@ -16,8 +16,8 @@ def run(load,
     A_words, B_words = load()
     A_words, B_words = normalize(A_words, B_words)
     A_words, B_words = parse(A_words, B_words)
-    A_words, B_words = n_gram(A_words, B_words)
-    G = cosine_similarity(A_words, B_words)
+    A_words, B_words, S_matrix = n_gram(A_words, B_words)
+    G = cosine_similarity(A_words, B_words, S_matrix)
     output(G, 0.0)
     return
 
