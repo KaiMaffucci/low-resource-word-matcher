@@ -46,32 +46,31 @@ def n_gram(A_words, B_words, n=2):
     # generate lists for custom distance rules
     # add all syllables including standalone consonants/vowels
     # TODO: maybe put this in a function? also maybe use regex instead of this way?
-    ts_sounds = [morph for morph in all_morphemes if morph[:-1] == "ts"] + ["ts"]
-    print(ts_sounds) # test code
-    j_sounds = [morph for morph in all_morphemes if morph[:-1] == "j"] + ["j"]
-    qu_sounds = [morph for morph in all_morphemes if morph[:-1] == "qu"] + ["qu"]
-    tl_sounds = [morph for morph in all_morphemes if morph[:-1] == "tl"] + ["tl"]
-    dl_sounds = [morph for morph in all_morphemes if morph[:-1] == "dl"] + ["dl"]
-    d_sounds = [morph for morph in all_morphemes if morph[:-1] == "d"] + ["d"]
-    g_sounds = [morph for morph in all_morphemes if morph[:-1] == "g"] + ["g"]
-    k_sounds = [morph for morph in all_morphemes if morph[:-1] == "k"] + ["k"]
+    ts_sounds = [m for m in all_morphemes if m[:-1] == "ts"] + ["ts"]
+    j_sounds = [m for m in all_morphemes if m[:-1] == "j"] + ["j"]
+    qu_sounds = [m for m in all_morphemes if m[:-1] == "qu"] + ["qu"]
+    tl_sounds = [m for m in all_morphemes if m[:-1] == "tl"] + ["tl"]
+    dl_sounds = [m for m in all_morphemes if m[:-1] == "dl"] + ["dl"]
+    d_sounds = [m for m in all_morphemes if m[:-1] == "d"] + ["d"]
+    g_sounds = [m for m in all_morphemes if m[:-1] == "g"] + ["g"]
+    k_sounds = [m for m in all_morphemes if m[:-1] == "k"] + ["k"]
     # NOTE: *not* aspiration (h before consonant). This is for normal h syllables
-    h_sounds = [morph for morph in all_morphemes if morph[:-1] == "h"] + ["h"]
-    l_sounds = [morph for morph in all_morphemes if morph[:-1] == "l"] + ["l"]
-    s_sounds = [morph for morph in all_morphemes if morph[:-1] == "s"] + ["s"]
-    m_sounds = [morph for morph in all_morphemes if morph[:-1] == "m"] + ["m"]
-    n_sounds = [morph for morph in all_morphemes if morph[:-1] == "n"] + ["n"]
-    t_sounds = [morph for morph in all_morphemes if morph[:-1] == "t"] + ["t"]
-    w_sounds = [morph for morph in all_morphemes if morph[:-1] == "w"] + ["w"]
-    y_sounds = [morph for morph in all_morphemes if morph[:-1] == "y"] + ["y"]
+    h_sounds = [m for m in all_morphemes if m[:-1] == "h"] + ["h"]
+    l_sounds = [m for m in all_morphemes if m[:-1] == "l"] + ["l"]
+    s_sounds = [m for m in all_morphemes if m[:-1] == "s"] + ["s"]
+    m_sounds = [m for m in all_morphemes if m[:-1] == "m"] + ["m"]
+    n_sounds = [m for m in all_morphemes if m[:-1] == "n"] + ["n"]
+    t_sounds = [m for m in all_morphemes if m[:-1] == "t"] + ["t"]
+    w_sounds = [m for m in all_morphemes if m[:-1] == "w"] + ["w"]
+    y_sounds = [m for m in all_morphemes if m[:-1] == "y"] + ["y"]
 
     # includes standalone vowels like a (for now)
-    a_sounds = [morph for morph in all_morphemes if morph[-1] == "a"]
-    e_sounds = [morph for morph in all_morphemes if morph[-1] == "e"]
-    i_sounds = [morph for morph in all_morphemes if morph[-1] == "i"]
-    o_sounds = [morph for morph in all_morphemes if morph[-1] == "o"]
-    u_sounds = [morph for morph in all_morphemes if morph[-1] == "u"]
-    v_sounds = [morph for morph in all_morphemes if morph[-1] == "v"]
+    a_sounds = [m for m in all_morphemes if m[-1] == "a"]
+    e_sounds = [m for m in all_morphemes if m[-1] == "e"]
+    i_sounds = [m for m in all_morphemes if m[-1] == "i"]
+    o_sounds = [m for m in all_morphemes if m[-1] == "o"]
+    u_sounds = [m for m in all_morphemes if m[-1] == "u"]
+    v_sounds = [m for m in all_morphemes if m[-1] == "v"]
 
     # account for custom distances
     """
@@ -175,14 +174,14 @@ def n_gram(A_words, B_words, n=2):
                         continue # yeah
                                     
                 # if aspirated consonant in a == consonant in m
-                if a[1] == m[:-1]:
+                if a[1:-1] == m[:-1]:
                     new_dist += 0.25
                 else:
                     new_dist += 0.5
                 # if vowels don't match, increase distance
                 if a[-1] != m[-1]:
                     new_dist += 0.5
-                # distance only has meaning in dict if it is not 0 or 1 in this case
+
                 if new_dist < 1: 
                     dist_dict[frozenset([a, m])] = new_dist
 
@@ -195,12 +194,10 @@ def n_gram(A_words, B_words, n=2):
     for v in vowels:
         dist_dict[frozenset([v, "'" + v])] = 0.25
 
-    # test code: print dictionary
-    print(dist_dict)
-    exit()
-
     # TODO: save this to a json file and add option for loading it
-    # so we don't have to generate all this every time
+    # so we don't have to generate all this every time.
+    # Then, we can perform properties-based testing:
+    # we can calculate the approximate size of how big we expect the dictionary to be.
 
     # building the distance matrix is going to suck, but it'll work
 
