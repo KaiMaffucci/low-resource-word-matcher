@@ -1,5 +1,5 @@
 
-def cosine_similarity(A_words, B_words):
+def cosine_similarity(A_words, B_words, S_matrix=None):
 
     import networkx as nx
     import numpy as np
