@@ -30,6 +30,10 @@ def load(fname = input("Enter file name and path (my Anki deck): ")):
     with open(fname, encoding="utf-8") as f:
         for line in f:
             line = line.rstrip("\n")
+            # remove text in paretheses
+            # this causes vowels to drop, really testing the program's NLP capabilities
+            line = re.sub(r'\(.*?\)', '', line)
+
             match = pattern.match(line)
 
             if match:

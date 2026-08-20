@@ -1,56 +1,62 @@
 
 # NOTE: "nah" syllable is kind of a problem?
-def n_gram(A_words, B_words, n=2):
+def n_gram(A_words, B_words, n=1):
 
-    # generate n-grams for each word in each set
-    A_words = tokenize(A_words, n)
-    B_words = tokenize(B_words, n)
+    if n != 1:
+        print("We don't do real n-grams here, sorry. Running default \"n=1\"...")
 
     # build custom distances morpheme-to-morpheme (TODO: property-based testing on dictionary size)
-    all_morphemes, dist_dict = build_dict()
+    all_morphemes, dist_dict = build_dist_dict()
 
-    # turn dists frozenset dictionary into normal dictionary
-    # (with similarities instead of distances) for faster lookup
-    sim_dict = build_sim_dict(dist_dict)
+    # map each morpheme to an index for vectorization
+    index_map = {m: i for i, m in enumerate(all_morphemes)}
 
-    # build giant n-gram distance dictionary
-    all_ngrams, ngram_to_index = build_ngram_vocab(all_morphemes, n)
+    # build similarity matrix, with values for each possible n-gram
+    vocab_size  = len(all_morphemes)
 
-    # TODO: build vectors for each n-gram
-    # this is really complicated and i need to rest so im going to wait until tomorrow to do this
+    # create sparse similarity matrix 
+    S = build_unigram_matrix(index_map, dist_dict)
+
+    # use new index mapping to vectorize words
+    A_words = vectorize(A_words, index_map)
+    B_words = vectorize(B_words, index_map)
+
+    # vectorization complete
+    return A_words, B_words, S
+
+def build_unigram_matrix(index_map, dist_dict):
     import numpy as np
-    import scipy.sparse as sp
 
-    ngram_vocab_size = len(all_ngrams)
-    # using a sparse matrix initially, but we're gonna need to compress it
-    S_sparse = sp.lil_matrix((ngram_vocab_size, ngram_vocab_size), dtype=np.float32)
+    # initialize matrix 
+    map_size = len(index_map)
+    S = np.identity(map_size, dtype=np.float32)
 
-
-    # actual vectorization begins
-    # generate a vector for each word, for each word's n-gram list
-    vectorize()
-
-    return A_words, B_words
-
-
-def build_sim_dict(dist_dict):
-    sim_dict = {}
+    # main loop, adding similarity scores for each morpheme pair
     for f_set, dist in dist_dict.items():
-        tokens = list(f_set)
-        sim_val = max(0.0, 1.0 - dist)
-        sim_dict[(tokens[0], tokens[1])] = sim_val
-        sim_dict[(tokens[1], tokens[0])] = sim_val
-    return sim_dict
+        m1, m2 = list(f_set)
+        if m1 in index_map and m2 in index_map:
+            i, j = index_map[m1], index_map[m2]
+            sim = max(0.0, 1.0 - dist) # linear conversion from dist to sim
+            S[i, j] = sim
+            S[j, i] = sim
+            
+    return S
 
-def build_ngram_vocab(all_morphemes, n):
-    import itertools # i love you for this, itertools
-    all_ngrams = sorted(list(itertools.product(all_morphemes, repeat=n)))
-    ngram_to_index = {ngram: i for i, ngram in enumerate(all_morphemes)}
-    return all_ngrams, ngram_to_index
+# takes a list of words and generates a vector for each word
+def vectorize(words, index_map):
+    import numpy as np
 
+    # loop to vectorize each word
+    for i in range(len(words)):
+        words[i].vec = np.zeros(len(index_map), dtype=np.float32)
+        for m in words[i].morphemes:
+            if m in index_map:
+                words[i].vec[index_map[m]] += 1
+    
+    return words
 
 # generates custom distances dictionary
-def build_dict():
+def build_dist_dict():
        
         # build massive list of all morphemes based on my grammar
         """
@@ -243,16 +249,3 @@ def build_dict():
         # we can calculate the approximate size of how big we expect the dictionary to be.
 
         return all_morphemes, dist_dict
-
-
-def tokenize(words, n):
-
-    for w in range(len(words)):
-        # crazy freaking trick
-        words[w].ngrams = list(zip(*(words[w].morphemes[i:] for i in range(n))))
-
-    return words
-
-
-def vectorize(words, vocab):
-    pass
