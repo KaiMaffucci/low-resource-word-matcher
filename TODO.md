@@ -1,15 +1,19 @@
 # Overall Long-Term Goals
 
+If you want information on how to actually run the program and how it works, that would be in `README.md` or the `docs` folder. This is for things I have to do.
+
 ## Near-future
 
  - **Create base version**. The basic process will consist of uploading two sets of word data (A and B), then comparing each word in set A against set B in a bipartite manner to detect possible word matches. Language-agnostic, which means it may be less effective than catered versions. ☑
- - **Add Cherokee (Tsalagi)-specific functionality.** Details in the Cherokee section of this document. ☐
+ - **Add Cherokee (Tsalagi)-specific functionality.** Details in the Cherokee section of this document. ☑
 
 ## Far future
 
 Explore:
- - How machine learning (not necessarily AI) can assist in rule detection. For now, I will likely be sticking mostly to rule-based NLP.
- - Accounting for large datasets, big enough where each dataset cannot fit into standard RAM sizes.
+ - Alternative matrix data structures for Cherokee n-grams
+ - On-the-fly n-gram matrix generation (originally I wanted the same matrix across all datasets to maintain consistency, but capturing each n-gram may prove too difficult)
+ - How machine learning (not AI) can assist in rule detection. For now, I will stick to rule-based NLP.
+ - Accounting for large datasets, big enough that each dataset cannot fit into standard RAM sizes.
  - Parallel processing for word-matching
  - Comparing transcriptions from TTS applications to written words
  - Taking tone+pitch into account (especially for Cherokee)
@@ -49,7 +53,7 @@ SYLLABLE: nah | hna |\
 &emsp;&emsp;consonant |\
 &emsp;&emsp;s
 
-4. **n-gram tokenization and vectorization**. Building the n-gram tokens will likely use the default tokenizer, as all we need to do is glue morphemes together according to n. Vectorization will need to take into account certain norms about written Cherokee, listed below. ☐
+4. **n-gram tokenization and vectorization**. ~~Building the n-gram tokens will likely use the default tokenizer, as all we need to do is glue morphemes together according to n.~~ Will use the base morphemes/unigrams; n-grams for Cherokee are proving too memory-intensive, but is something I may explore in the future. I did my time to prove I understand n-gram vectorization in the generic version of this project, so I'm more concerned with doing something interesting with Cherokee than that. At any rate, unigram vectorization will need to take into account certain norms about written Cherokee, listed below. ☑
  - If two morphemes start with the same consonant sound, they are 50% similar. Same with ending with vowels.
  - Consonant + vowel morphemes will count as 50% similar to standalone vowels if the vowels match; same logic for standalone consonants.
  - Consonant sounds *ts* = *ch* = *j* (distance between these is 0)
@@ -59,9 +63,9 @@ SYLLABLE: nah | hna |\
  - *qu* + vowel and *gu* + vowel may want to be parsed and weighted equally, since the Ꮖ, Ꮗ, Ꮘ, Ꮙ, Ꮚ, and Ꮛ syllables are sometimes written as *qu* + vowel or *gu* + vowel.
  - *wh* = *wa*. This is a pattern I noticed in a word in the Durbin Feeling online dictionary, but I'm not sure if it'll matter for my datasets.
 
-5. **Cosine similarity**. Now it is a matter of computing cosine similarity between tokens, taking special rules from vectorization into account (soft cosine). ☐
-6. **Output**. This shouldn't be too different, aside from having to account for the original syllabary versions of transliterated words. We want to see how accurate the program is here. ☐
+5. **Cosine similarity**. Now it is a matter of computing cosine similarity between tokens, taking special rules from vectorization into account (soft cosine). ☑
+6. **Output**. This shouldn't be too different, aside from having to account for the original syllabary versions of transliterated words. We want to see how accurate the program is here. Note: additional functionality implemented. ☑
 
 # Testing
 
-There is still much to work out here, but I wanted to note that there is a triangle inequality for cosine similarity, and that will be important. I also know what the correct matches are beforehand, so I can test to determine if it detects matches or not (false negatives). 
+There is still much to work out here, but I wanted to note that there is a triangle inequality for cosine similarity, and that will be important. I also know what the correct matches are beforehand, so I can test to determine if it detects matches or not (false negatives). In addition, various items will be useful for property-based testing, such as morpheme dictionary sizes.
