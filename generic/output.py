@@ -17,8 +17,7 @@ def output(G, threshold=0.7, outmethod=input("Output format method (leave blank 
             if weight < threshold:
                 continue
             
-            # Use .name if your node is an object, or just print the node directly if it's a string
-            print(f"{l.normal} \t|\t {r.normal} | Weight: {weight:.4f}")
+            print(f"{l.normal} \t {r.normal} | Weight: {weight:.4f}")
 
     else:
         print("Invalid output format, returning...")
