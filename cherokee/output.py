@@ -19,7 +19,7 @@ def output(G, threshold_exclusive=float(input("Score threshold (exclusive): ")),
     # TODO: add failsafes so I don't explode my hard drive?
     elif outmethod == "save" or outmethod == "file":
 
-        fname = "out.txt"
+        fname = "results"
         f = open(fname, "w+")
         for l, r, data in G.edges(data=True):
                     weight = data['weight']
