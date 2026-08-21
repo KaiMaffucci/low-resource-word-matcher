@@ -1,7 +1,7 @@
 
 # TODO: flag any words missing the original phonetics
 
-def load(fname = input("Enter file name and path (my Anki deck): ")):
+def load(fname = input("Enter file name and path: ")):
 
     # regular expressions are super useful here, I'm not sure how I would do this without
     import re
@@ -11,7 +11,8 @@ def load(fname = input("Enter file name and path (my Anki deck): ")):
     # English definition with whitespace, followed by Cherokee syllabary (using Unicode), followed by Cherokee phonetics 
     # this is ugly as heck but it works well enough
     pattern = re.compile(
-        r'^([A-Za-z\s,]*?)([\u13A0-\u13FF\uAB70-\uABBF\s,]*?)([A-Za-z\s,]*)$'
+        #r'^([A-Za-z\s,]*?)([\u13A0-\u13FF\uAB70-\uABBF\s,]*?)([A-Za-z\s,]*)$'
+        r'^([A-Za-z\s,\'’‘]*?)([\u13A0-\u13FF\uAB70-\uABBF\s,]*?)([A-Za-z\s,\'’‘]*)$'
     )
 
     """where the original phonetic spellings will go (control)

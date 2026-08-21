@@ -10,7 +10,8 @@ def output(G, threshold_exclusive=float(input("Score threshold (exclusive): ")),
 
         for l, r, data in G.edges(data=True):
             weight = data['weight']
-            if weight <= threshold_exclusive or math.isclose(weight, 1.0): continue
+            if weight <= threshold_exclusive or (math.isclose(weight, 1.0) and l.alt == r.alt):
+                continue
             print(f"{l.raw}\t{l.normal}\t{r.raw}\t{r.normal}\t{weight:.4f}")
 
         #print(threshold_exclusive) # test code
@@ -23,7 +24,8 @@ def output(G, threshold_exclusive=float(input("Score threshold (exclusive): ")),
         f = open(fname, "w+")
         for l, r, data in G.edges(data=True):
                     weight = data['weight']
-                    if weight <= threshold_exclusive or math.isclose(weight, 1.0): continue
+                    if weight <= threshold_exclusive or (math.isclose(weight, 1.0)  and l.alt == r.alt):
+                        continue
                     f.write(f"{l.raw}\t{l.normal}\t{r.raw}\t{r.normal}\t{weight:.4f}\n")
 
     else:

@@ -7,9 +7,11 @@ def normalize(A_words, B_words):
     # this is a generic implementation, it's not meant to do anything fancy
     # doing it on the alt text this time; that's where the phonetic (latin) spellings are stored
     for i in range(len(A_words)):
-        A_words[i].normal =  unicodedata.normalize('NFC', A_words[i].alt).strip().lower()
+        clean_alt = A_words[i].alt.replace("’", "'").replace("‘", "'").replace("`", "'")
+        A_words[i].normal =  unicodedata.normalize('NFC',clean_alt).strip().lower()
 
     for i in range(len(B_words)):
-        B_words[i].normal =  unicodedata.normalize('NFC', B_words[i].alt).strip() # already lowercase here
+        clean_alt = B_words[i].alt.replace("’", "'").replace("‘", "'").replace("`", "'")
+        B_words[i].normal =  unicodedata.normalize('NFC',clean_alt).strip() # already lowercase here
 
     return A_words, B_words
