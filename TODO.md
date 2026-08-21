@@ -16,7 +16,8 @@ If you want information on how to actually run the program and how it works, tha
 Explore:
  - Alternative matrix data structures for Cherokee n-grams
  - On-the-fly n-gram matrix generation (originally I wanted the same matrix across all datasets to maintain consistency, but capturing each n-gram may prove too difficult)
- - How machine learning (not AI) can assist in rule detection. For now, I will stick to rule-based NLP.
+ - Word embedding
+ - How machine learning (not AI) can assist, e.g., in rule detection. For now, I will stick to rule-based NLP.
  - Accounting for large datasets, big enough that each dataset cannot fit into standard RAM sizes.
  - Parallel processing for word-matching
  - Comparing transcriptions from TTS applications to written words
