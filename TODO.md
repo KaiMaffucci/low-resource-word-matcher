@@ -6,9 +6,9 @@ If you want information on how to actually run the program and how it works, tha
 
  - **Create base version**. The basic process will consist of uploading two sets of word data (A and B), then comparing each word in set A against set B in a bipartite manner to detect possible word matches. Language-agnostic, which means it may be less effective than catered versions. ☑
  - **Add Cherokee (Tsalagi)-specific functionality.** Details in the Cherokee section of this document. ☑
- - **Glaring oversight**: glottal stops (') in Cherokee can come before any sound. Right now, I only take them into account when they come before vowels. I need to add the rest of the morphemes with the glottal stop before them (eg 'ni) to my distances dictionary, and take it into account during vectorization. They should have the same distances to each other like the non-glottal stop morphemes do, and a distance of 0.25 to all of their respective similar morphemes (eg 'ni and ni have 0.25 distance). ☐
+ - **Glaring oversight**: glottal stops (') in Cherokee can come before any sound. Right now, I only take them into account when they come before vowels. I need to add the rest of the morphemes with the glottal stop before them (eg 'ni) to my distances dictionary, and take it into account during vectorization. They should have the same distances to each other as the non-glottal stop morphemes do, and a distance of 0.25 to all of their respective similar morphemes (eg 'ni and ni have 0.25 distance). ☑
  - Testing ☐, documentation ☐ for Cherokee version
- - Sort matches from highest to lowest so we don't have to ctrl+f or sift through results. ☐
+ - Sort matches from highest to lowest so we don't have to Ctrl+F or sift through results. ☐
  - Different modes for inputting datasets for Cherokee. For example, having the option to transliterate syllabics or not, or compare one dataset against itself VS a different dataset. ☐
 
 ## Far future
@@ -16,6 +16,7 @@ If you want information on how to actually run the program and how it works, tha
 Explore:
  - Alternative matrix data structures for Cherokee n-grams
  - On-the-fly n-gram matrix generation (originally I wanted the same matrix across all datasets to maintain consistency, but capturing each n-gram may prove too difficult)
+ - Explore how organizing morpheme data differently may make vectorization more efficient (eg having separate axes for the morpheme's vowel, consonant, aspiration, and glottal-initial, or splitting up some of these things into entirely different morphemes)
  - Word embedding
  - How machine learning (not AI) can assist, e.g., in rule detection. For now, I will stick to rule-based NLP.
  - Accounting for large datasets, big enough that each dataset cannot fit into standard RAM sizes.
