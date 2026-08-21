@@ -6,9 +6,10 @@ If you want information on how to actually run the program and how it works, tha
 
  - **Create base version**. The basic process will consist of uploading two sets of word data (A and B), then comparing each word in set A against set B in a bipartite manner to detect possible word matches. Language-agnostic, which means it may be less effective than catered versions. ☑
  - **Add Cherokee (Tsalagi)-specific functionality.** Details in the Cherokee section of this document. ☑
- - **Glaring oversight**: glottal stops (') in Cherokee can come before any sound. Right now, I only take them into account when they come before vowels. I need to add the rest of the morphemes with the glottal stop before them (eg 'ni) to my distances dictionary, and take it into account during vectorization. Need to determine distance rules as well.
- - Sort matches from highest to lowest so we don't have to ctrl+f or sift through results.
- - Different modes for inputting datasets for Cherokee. For example, having the option to transliterate syllabics or not, or compare one dataset against itself VS a different dataset.
+ - **Glaring oversight**: glottal stops (') in Cherokee can come before any sound. Right now, I only take them into account when they come before vowels. I need to add the rest of the morphemes with the glottal stop before them (eg 'ni) to my distances dictionary, and take it into account during vectorization. Need to determine distance rules as well. ☐
+ - Testing ☐, documentation ☐ for Cherokee version
+ - Sort matches from highest to lowest so we don't have to ctrl+f or sift through results. ☐
+ - Different modes for inputting datasets for Cherokee. For example, having the option to transliterate syllabics or not, or compare one dataset against itself VS a different dataset. ☐
 
 ## Far future
 
