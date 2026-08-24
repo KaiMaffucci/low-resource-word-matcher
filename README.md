@@ -1,6 +1,11 @@
 # low-resource-word-matcher
 A spelling similarity matcher/detector for finding cognates, spelling variants, and misspellings in low-resource and endangered languages, particularly Cherokee.
 
+Navigation guide:
+ - To learn how to use the software, keep scrolling in this README.
+ - To look at the dataset, testing process, and findings/discussion for the results of the Cherokee version, check the `data` directory.
+ - To look at the code, look at all of the other directories (I recommend starting with `main.py` in the root of the folder). 
+
 ## Important Copyright Information
 
 DATA SOVEREIGNTY AND COPYRIGHT NOTICE: All data in the `data` folder does NOT fall under the MIT license of the rest of the repository. I do NOT own the data, and it is subject to the original copyright holders, detailed below. If any of the respective copyright holders of the data wish for me to take it down or modify it, feel free to email me at `kai.maffucci@gmail.com`, and such matters will be handled immediately.
