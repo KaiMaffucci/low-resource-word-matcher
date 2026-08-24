@@ -1,6 +1,0 @@
-dog
-cat
-bob
-john
-thomas
-bleebleblorp
