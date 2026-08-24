@@ -4,7 +4,7 @@ A spelling similarity matcher/detector for finding cognates, spelling variants, 
 Navigation guide:
  - To learn how to use the software, keep scrolling in this README.
  - To look at the dataset, testing process, and findings/discussion for the results of the Cherokee version, check the `data` directory (contained within the `data` directory to mainain clarity about copyright).
- - To look at the code, look at all of the other directories (I recommend starting with `main.py` in the root of the folder). 
+ - To look at the code, look at all of the other directories (I recommend starting with `main.py` in the root of this repository). 
 
 ## Important Copyright Information
 
