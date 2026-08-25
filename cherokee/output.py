@@ -17,7 +17,7 @@ def output(G, threshold_exclusive=float(input("Score threshold (exclusive): ")),
         #print(threshold_exclusive) # test code
 
     # save to file (good for big data sets)
-    # TODO: add failsafes so I don't explode my hard drive?
+    # TODO: add failsafes so I don't explode my hard drive on accident?
     elif outmethod == "save" or outmethod == "file":
 
         fname = "results"
