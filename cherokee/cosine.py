@@ -1,3 +1,8 @@
+"""
+if you want to read more about where soft cosine similarity and the similarity matrix comes from,
+this is the source/first release (will be in the documentation eventually): 
+https://www.researchgate.net/publication/267211399_Soft_Similarity_and_Soft_Cosine_Measure_Similarity_of_Features_in_Vector_Space_Model
+"""
 
 def cosine_similarity(A_words, B_words, S_matrix):
 

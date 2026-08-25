@@ -11,8 +11,35 @@ def n_gram(A_words, B_words, n=1):
     # map each morpheme to an index for vectorization
     index_map = {m: i for i, m in enumerate(all_morphemes)}
 
-    # build similarity matrix, with values for each possible n-gram
-    vocab_size  = len(all_morphemes)
+    """
+    TEST: morpheme dictionary size is valid
+    standard syllabry => +86
+    standard standalone consonant sounds => +15
+    spelling variants (including standalone consonants) 
+        dl_ (- tla), k_ (- ka), j_/ch_, gw_/gu_/kw_ => +6+6+14+21
+                                                                                                        - 1 ("gu" is double-counted for because it is a consonant and "g" + "u")
+    current total: 147
+    aspirated sounds (note: realistically morphemes like "hh" don't exist, but they are includeed) => +147-2-6 (hna does not get a "hhna" and "hna" already counted; so are "h_" sounds)
+    glottal-initial sounds => *2
+    total: 572
+    """
+    real_m_count = 572
+    try: 
+        assert(len(all_morphemes) == real_m_count)
+    except AssertionError:
+        print(f"ASSERT FAIL: Expected morpheme count:{real_m_count}, got: {len(all_morphemes)}")
+        exit()
+
+    # TEST: morphemes list and index map match
+    try:
+        assert(len(all_morphemes) == len(index_map))
+    except AssertionError:
+        print(f"ASSERT FAIL: Morpheme list size does not match index map size")
+        exit()
+
+    # potential future test: do math on proper size of dist_dict
+    # (which leads to the shape of the similarity matrix, too)
+    # and check for that
 
     # create sparse similarity matrix 
     S = build_unigram_matrix(index_map, dist_dict)
@@ -81,18 +108,19 @@ def build_dist_dict():
     vowels = ["a", "e", "i", "o", "u", "v"]
 
     all_morphemes.add("nah")
-    all_morphemes.add("hna")
-    all_morphemes.add("dla")
+    #all_morphemes.add("hna")
+    #all_morphemes.add("dla")
     h = "h" # makes life slightly easier
     for c in consonants:
         all_morphemes.add(c)
-        all_morphemes.add(h + c)
+        all_morphemes.add(h + c) # aspirated morphemes
         for v in vowels:
             all_morphemes.add(h + c + v)
             all_morphemes.add(c + v)
     for v in vowels:
         all_morphemes.add(v)
     all_morphemes.add("s")
+    all_morphemes.add("hnah") # edge case aspirated morpheme
 
     # make it a list so it's easier to iterate
     # does not include glottal stops for now
@@ -234,6 +262,18 @@ def build_dist_dict():
     dist_dict.update(add_semi_dists(dl_sounds, tl_sounds))
     dist_dict[frozenset(["dla", "tla"])] = 0.5
 
+    # to, tu, tv don't have syllabry symbols,
+    # so they will be considered 0.25 distance for matching vowels
+    # and 0.75 for nonmatching
+    # (like the case with most tl_)
+    misc_t_sounds = ['to', 'tu', 'tv']
+    add_semi_dists(d_sounds, misc_t_sounds)
+
+    # g and k syllables (except in "ka" and "ga" because they have different characters)
+    # have 0.25 distance, like dl- and tl-
+    dist_dict.update(add_semi_dists(g_sounds, k_sounds))
+    dist_dict[frozenset(["ga", "ka"])] = 0.5
+
     # build list of aspirated morphemes
     aspirated_morphemes = [m for m in all_morphemes if m[0] == 'h' and m not in h_sounds and m != 'hna']
     # (h consonant [vowel]) have distance of 0.25 from original matching (consonant vowel)
@@ -265,11 +305,6 @@ def build_dist_dict():
         return new_dists
 
     dist_dict.update(build_aspirated_distances(aspirated_morphemes))
-
-    # g and k syllables (except in "ka" and "ga" because they have different characters)
-    # have 0.25 distance, like dl- and tl-
-    dist_dict.update(add_semi_dists(g_sounds, k_sounds))
-    dist_dict[frozenset(["ga", "ka"])] = 0.5
 
     # build list of morphemes that start with glottal stop : based on copy of current morpheme list
     glottal_initial_morphemes = ["'" + m for m in all_morphemes]
