@@ -59,7 +59,9 @@ Feel free to inform me if I forgot anything. This function can probably be made 
 
 ## cosine.py
 
-
+`cosine(A_words, B_words, S_matrix) -> G`: performs soft cosine similarity between the vectors of two sets of words based on the similarity matrix `S_matrix`, returning a bipartite graph `G` where the weights on each edge are the distances between the words. The *original* source for soft cosine and for constructing the similarity matrix comes from [this paper](https://www.researchgate.net/publication/267211399_Soft_Similarity_and_Soft_Cosine_Measure_Similarity_of_Features_in_Vector_Space_Model
+). 
 
 ## output.py
 
+`output(G, threshold_exclusive, outmethod) -> None`: takes in the final graph `G` and asks for additional information on what results are saved and how.
