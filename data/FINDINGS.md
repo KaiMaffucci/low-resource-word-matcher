@@ -1,6 +1,8 @@
 
 # Findings, Discussion, Limitations & Conclusion
 
+To reiterate, the goal of this project is to implement a Cherokee-sensitive tool to detect similarities between words, especially writing variants.
+
 ## What the Program Does Right
 
 As discussed in `TESTING.md`, the program has successfully detected spelling variants and similar words. 
