@@ -7,9 +7,10 @@ If you want information on how to actually run the program and how it works, tha
  - **Create base version**. The basic process will consist of uploading two sets of word data (A and B), then comparing each word in set A against set B in a bipartite manner to detect possible word matches. Language-agnostic, which means it may be less effective than catered versions. ☑
  - **Add Cherokee (Tsalagi)-specific functionality.** Details in the Cherokee section of this document. ☑
  - **Glaring oversight**: glottal stops (') in Cherokee can come before any sound. Right now, I only take them into account when they come before vowels. I need to add the rest of the morphemes with the glottal stop before them (eg 'ni) to my distances dictionary, and take it into account during vectorization. They should have the same distances to each other as the non-glottal stop morphemes do, and a distance of 0.25 to all of their respective similar morphemes (eg 'ni and ni have 0.25 distance). ☑
- - Testing ☐, documentation ☐ for Cherokee version
+ - Testing ☑, documentation ☐ for Cherokee version
  - Sort matches from highest to lowest so we don't have to Ctrl+F or sift through results. ☐
  - Different modes for inputting datasets for Cherokee. For example, having the option to transliterate syllabics or not, or compare one dataset against itself VS a different dataset. ☐
+ - Comparing generic vs Cherokee-tailored versions for accuracy
 
 ## Far future
 
@@ -36,6 +37,8 @@ Explore:
 # Cherokee (Tsalagi) Specifications
 
 **DISCLAIMER**: I am not Indigenous, let alone enrolled in a Cherokee nation. While I am taking courses with the Cherokee Nation of OK, take **everything** I say about the Cherokee language with a *huge* grain of salt. If you have questions about the language, it is best to ask a native speaker, or at least a second-language learner enrolled in one of the three federally recognized Cherokee nations (Cherokee Nation OK, United Keetowah Band OK, Eastern Band NC).
+
+Note: a lot of the information below may be outdated, but I am leaving it for now for posterity.
 
 Another note: Cherokee is a tonal, pitched, complex spoken language. Sound matters, but this is a text NLP program. It may fail to notice certain differences between words.
 
