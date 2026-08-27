@@ -1,5 +1,5 @@
 # low-resource-word-matcher
-A writing similarity matcher/detector for finding cognates and writing variantsin low-resource and endangered languages, particularly Cherokee.
+A writing similarity matcher/detector for finding cognates and writing variants in low-resource and endangered languages, particularly Cherokee.
 
 **Navigation guide**
  - To view copyright and sovereignty notices, keep scrolling in this README.
@@ -9,7 +9,7 @@ A writing similarity matcher/detector for finding cognates and writing variantsi
 
 ## Important Copyright Information
 
-DATA SOVEREIGNTY AND COPYRIGHT NOTICE: All Cherokee language material in the `data` folder does NOT fall under the MIT license of the rest of the repository. I do NOT own the data, and it is subject to the original copyright holders, detailed below. If any of the respective copyright holders of the data wish for me to take it down or modify it, feel free to email me at `kai.maffucci@gmail.com`, and such matters will be handled immediately.
+DATA SOVEREIGNTY AND COPYRIGHT NOTICE: All Cherokee language material in the `data` folder does NOT fall under the MIT license of the rest of the repository. I do NOT own the data, and it is subject to the original copyright holders, detailed below. If any of the respective copyright holders of the data wish for me to take it down or modify it, feel free to email me [here](https://www.kaimaffucci.org/contact_form), and such matters will be handled immediately.
 
 Syllabary writings for all non-clothing words found on the Cherokee Nation of Oklahoma Language Department's posters section of their website here: https://language.cherokee.org/posters/classroom/
 
@@ -19,11 +19,11 @@ All words were cross-referenced with entries in the Durbin Feeling dictionary he
 
 ## Cherokee Sovereignty Notice
 
-This research project is conducted in accordance with the CARE guidelines for researchers (https://www.navigating.art/articles-from-navigatingart/care-data-practices-for-art-researchers-an-introduction-to-ethical-digital-scholarship). Importantly, this stresses these major points:
+I am NOT Cherokee NOR indigenous, and I do not claim that identity, nor am I an authority in Cherokee linguistics. Take everything I say with a huge grain of salt. Furthermore, this research project is conducted in accordance with the CARE guidelines for researchers (https://www.navigating.art/articles-from-navigatingart/care-data-practices-for-art-researchers-an-introduction-to-ethical-digital-scholarship). Importantly, stressing these major points:
 
-1. This research is done for the **collective benefit** of the community. Researchers must steer away from purely extractive research models for personal gain, and consider what their research does for the community from which they obtain their data. In this case, the methods in this project may be used to discover relationships between words and detect spelling variants. I will be as clear as possible about how this project works and how to use it, so that second-language learners can use the software if they wish. In addition, I hope it serves as inspiration to any aspiring indigenous scholars looking to learn more about writing software for their language.
+1. This research is done for the **collective benefit** of the community. Researchers must steer away from purely extractive research models for personal gain, and consider what their research does for the community from which they use data. In this case, the methods in this project may be used to discover relationships between words and detect writing variants. I will be as clear as possible about how this project works and how to use it, so that second-language learners can use the software if they wish. In addition, I hope it serves as inspiration to any aspiring indigenous scholars looking to learn more about writing software for their language. If you are, feel free to fork the repository and interact in general.
 2. In addition to the copyright notice, in accordance with the **ability to control**, I encourage any community members who find this project to reach out. Input on the project's conduct and its datasets is welcome and encouraged.
-3. In the name of **responsibility**, I will remain absolutely transparent about the results obtained from this project. Findings will be detailed in further documents. I am NOT an indigenous scholar, nor do I claim to be an authority on Cherokee or any indigenous language; I am merely an outside learner.
+3. In the name of **responsibility**, I will remain absolutely transparent about the results obtained from this project (`data/FINDINGS.md`). I am NOT an indigenous scholar, nor do I claim to be an authority on Cherokee or any indigenous language; I am merely an outside learner.
 4. This project and its data will only be used for **ethical** purposes. It will NOT be used to appropriate or otherwise disparage in any way.
 
 ## Running the Program
@@ -47,7 +47,7 @@ Your command will be of the general format:
 
 #### Dataset Formatting
 
-For the Cherokee version, it expects a single file (eg. `data/cherokee_vocab`) where each line is a series of Latin characters and whitespace, followed by Cherokee syllabics and whitespace, followed by more Latin characters. This is because I was originally using data exported from my Anki deck as the dataset, which followed this format. The initial Latin characters are the English definition; the Cherokee syllabics are the Cherokee phrase; and the Latin characters after that are the phonetics of that phrase. From this, it generates two sets of words: the first with the syllabics and original phonetics, and the second with the syllabics plus transliterated phonetics from those syllabics. These are the two word sets it compares for similarity.
+For the Cherokee version, it expects a single file (eg., `data/cherokee_vocab`) where each line is a series of Latin characters and whitespace, followed by Cherokee syllabics and whitespace, followed by more Latin characters. This is because I was originally using data exported from my Anki deck as the dataset, which followed this format. The initial Latin characters are the English definition; the Cherokee syllabics are the Cherokee phrase; and the Latin characters after that are the phonetics of that phrase. From this, it generates two sets of words: the first with the syllabics and original phonetics, and the second with the syllabics plus transliterated phonetics from those syllabics. These are the two word sets it compares for similarity.
 
 For the generic version, it simply expects two separate data files, where each line in each file is an individual word.
 
