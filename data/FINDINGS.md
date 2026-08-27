@@ -75,3 +75,13 @@ This leads me to a few ideas. My first idea is to construct an on-demand similar
 In this day and age, most modern NLP is done with machine learning techniques. This is something I am considering myself. However, even if it is not "AI" per se, especially the generative kind pervading the news, many community members are skeptical of feeding their language into anything "AI-shaped" or "AI-like." This comes down to sovereignty. [It can be done well](https://www.npr.org/2026/07/26/nx-s1-5825798/robot-speaks-endangered-native-american-languages), but communities must retain full control over where the data goes. The last thing people want is sensitive cultural data spreading to corporate LLMs that take advantage of the language, culture, and people for their own profit. Once something is out there, it is virtually impossible to take back. These are the main reasons why I have decided to take a rules-based approach to Cherokee NLP, especially since I am acting largely independently with limited knowledge.
 
 I hope to eventually write a paper on my project's findings and its limitations, but hopefully this document has proven to be helpful in explaining what is going on in this repository.
+
+## Further Reading
+
+Here is more literature on Cherokee NLP and related topics.
+
+- https://aclanthology.org/2022.acl-long.108/
+- https://aclanthology.org/2020.emnlp-main.43/
+- https://aclanthology.org/2025.lowresnlp-1.1/
+- https://aclanthology.org/2025.naacl-srw.10/
+- https://www.tntech.edu/news/releases/24-25/tech-professor-uses-ai-to-help-preserve-cherokee-language.php
