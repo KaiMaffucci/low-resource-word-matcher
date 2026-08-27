@@ -1,5 +1,5 @@
 # low-resource-word-matcher
-A spelling similarity matcher/detector for finding cognates, spelling variants, and misspellings in low-resource and endangered languages, particularly Cherokee.
+A writing similarity matcher/detector for finding cognates and writing variantsin low-resource and endangered languages, particularly Cherokee.
 
 **Navigation guide**
  - To view copyright and sovereignty notices, keep scrolling in this README.
@@ -11,7 +11,7 @@ A spelling similarity matcher/detector for finding cognates, spelling variants, 
 
 DATA SOVEREIGNTY AND COPYRIGHT NOTICE: All Cherokee language material in the `data` folder does NOT fall under the MIT license of the rest of the repository. I do NOT own the data, and it is subject to the original copyright holders, detailed below. If any of the respective copyright holders of the data wish for me to take it down or modify it, feel free to email me at `kai.maffucci@gmail.com`, and such matters will be handled immediately.
 
-Syllabary spellings for all non-clothing words found on the Cherokee Nation of Oklahoma Language Department's posters section of their website here: https://language.cherokee.org/posters/classroom/
+Syllabary writings for all non-clothing words found on the Cherokee Nation of Oklahoma Language Department's posters section of their website here: https://language.cherokee.org/posters/classroom/
 
 Words on clothing found here: https://shiyo.org/clothing
 
