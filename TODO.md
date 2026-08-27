@@ -74,7 +74,3 @@ SYLLABLE: nah | hna |\
 
 5. **Cosine similarity**. Now it is a matter of computing cosine similarity between tokens, taking special rules from vectorization into account (soft cosine). ☑
 6. **Output**. This shouldn't be too different, aside from having to account for the original syllabary versions of transliterated words. We want to see how accurate the program is here. Note: additional functionality implemented. ☑
-
-# Testing
-
-There is still much to work out here, but I wanted to note that there is a triangle inequality for cosine similarity, and that will be important. I also know what the correct matches are beforehand, so I can test to determine if it detects matches or not (false negatives). In addition, various items will be useful for property-based testing, such as morpheme dictionary sizes.
