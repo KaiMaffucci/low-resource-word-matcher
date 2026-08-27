@@ -5,11 +5,11 @@ To reiterate, the goal of this project is to implement a Cherokee-sensitive tool
 
 ## What the Program Does Right
 
-As discussed in `TESTING.md`, the program has successfully detected spelling variants and similar words. 
+As discussed in `TESTING.md`, the program has successfully detected writing variants and similar words. 
 
 The `results` files include any word matches with a similarity strictly greater than 0.7.
 
-### Examples of Successful Spelling Variant Detection
+### Examples of Successful Writing Variant Detection
 
 ```
 ᏒᎦᏔ	svkta	ᏒᎦᏔ	svgata	0.7939
